@@ -113,3 +113,55 @@ SELECT d20.id,
 FROM district_2020 AS d20 LEFT JOIN district_2035 AS d35
 ON d20.id = d35.id
 ORDER BY d20.id;
+
+-- JOIN on multiple tables
+SELECT d20.id,
+       d20.school_2020,
+       en.enrollment,
+       gr.grades
+FROM district_2020 AS d20 JOIN district_2020_enrollment AS en
+    ON d20.id = en.id
+JOIN district_2020_grades AS gr
+    ON d20.id = gr.id
+ORDER BY d20.id;
+
+-- Combining query results with UNION
+-- Note: Result is a list of unique fields 
+SELECT * FROM district_2020
+UNION
+SELECT * FROM district_2035
+ORDER BY id;
+
+-- Combining query results with UNION ALL
+-- Result is a list with all fields from all tables
+SELECT * FROM district_2020
+UNION ALL
+SELECT * FROM district_2035
+ORDER BY id;
+
+-- Combine with UNION query
+
+SELECT '2020' AS year,
+       school_2020 AS school
+FROM district_2020
+
+UNION ALL
+
+SELECT '2035' AS year,
+       school_2035
+FROM district_2035
+ORDER BY school, year;
+
+-- INTERSECT: All that are in A and B``
+
+SELECT * FROM district_2020
+INTERSECT
+SELECT * FROM district_2035
+ORDER BY id;
+
+
+-- EXCEPT: All from A that are not in B
+SELECT * FROM district_2020
+EXCEPT
+SELECT * FROM district_2035
+ORDER BY id;
