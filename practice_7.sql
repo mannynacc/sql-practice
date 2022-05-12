@@ -44,7 +44,7 @@ SELECT * FROM meat_poultry_egg_establishments;
 
 -- Add a new column that says whether a estabishment has activities related to meat processing:
 
--- First ]add a column 
+-- First add a column 
 ALTER TABLE meat_poultry_egg_establishments ADD COLUMN meat_processing boolean;
 
 -- Fill the column with condition
